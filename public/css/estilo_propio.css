@@ -1,0 +1,13 @@
+#parte_inicial{
+	background-color: #FFA52D
+}
+
+#parte_final{
+	background-color: #FFA52D; 
+	padding-top: 5px
+}
+
+.tamano-grafico{
+    width: 900px; 
+    height: 400px	
+}
