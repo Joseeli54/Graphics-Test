@@ -3,20 +3,19 @@
 
 @section('content')
 
-    <html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
+
+      <?php $numero=11 ?>
+
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Pago', 'Porcentaje de Pago'],
-          ['Paypal',     11],
-          ['Transferencia',      2],
-          ['Uphold',  2],
-          ['Caja', 2],
+          ['Paypal', {{$numero}}],
+          ['Credito',  2],
+          ['Debito', 2],
           ['Efectivo',    7]
         ]);
 
@@ -25,7 +24,8 @@
           is3D: true,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        var chart = 
+        new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
       }
     </script>
@@ -45,7 +45,7 @@
       ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: 'Pedidos por año',
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
@@ -53,13 +53,11 @@
       }
     </script>
 
-  </head>
-  <body>
     <br>
-
   	<div class="card text-center">
 	 <div class="card-body">
-       <div id="piechart_3d" style="width: 900px; height: 400px"></div>
+       <div id="piechart_3d" class="tamano-grafico"> </div>
+       <div class=""> Efectivo <tr> | <tr> Credito </div>
     </div>
     </div>
     
@@ -67,12 +65,10 @@
     
     <div class="card text-center">
 	 <div class="card-body">
-       <div id="columnchart" style="width: 900px; height: 400px"></div>
+       <div id="columnchart" class="tamano-grafico"></div>
     </div>
     </div>
     
     <br>
-  </body>
-   </html>
 
 @endsection
