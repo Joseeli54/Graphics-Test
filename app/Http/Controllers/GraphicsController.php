@@ -14,75 +14,60 @@ class GraphicsController extends Controller
      */
     public function index()
     {
-        $usuario = 
-        \DB::select(DB::raw(" SELECT rif,pnombre from usuario"));
 
-        return view('graphics.report', compact('usuario'));
+        return view('graphics.report');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function porcentaje_pago(){
+
+        $cantidad_debito =(float) $this->cantidad_debito();
+        $cantidad_credito =(float) $this->cantidad_credito();
+        $cantidad_efectivo =(float) $this->cantidad_efectivo();
+        $cantidad_paypal = (float) $this->cantidad_paypal();
+
+        $porcentaje_debito = ( $cantidad_debito / ($cantidad_debito + $cantidad_credito + $cantidad_efectivo + $cantidad_paypal));
+        $porcentaje_credito = ( $cantidad_credito / ($cantidad_credito+$cantidad_debito+$cantidad_efectivo+ $cantidad_paypal))*100;
+        $porcentaje_efectivo = ($cantidad_efectivo / ($cantidad_efectivo+$cantidad_credito+ $cantidad_debito+ $cantidad_paypal))*100;
+        $porcentaje_paypal = ( $cantidad_paypal / ($cantidad_paypal+$cantidad_credito+ $cantidad_efectivo+ $cantidad_debito))*100;
+
+        $arreglo_porcentajes = array( $porcentaje_debito,  $porcentaje_credito, $porcentaje_efectivo, $porcentaje_paypal);
+
+        return $arreglo_porcentajes;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function cantidad_debito(){
+        
+        $cantidad_deb = 
+        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, debito d where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and d.cod = p.fk_debito;"));
+        foreach ($cantidad_deb as $deb);
+
+        return $deb->count;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function cantidad_credito(){
+        
+        $cantidad_cred = 
+        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, credito c where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and c.cod = p.fk_credito;"));
+        foreach ($cantidad_cred as $cred);
+
+        return $cred->count;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+     public function cantidad_efectivo(){
+        
+        $cantidad_efect = 
+        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, efectivo e  where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and e.cod = p.fk_efectivo;"));
+        foreach ($cantidad_efect as $efect);
+
+        return $efect->count;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+     public function cantidad_paypal(){
+        
+        $cantidad_pay = 
+        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, paypal pa where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and pa.cod = p.fk_paypal;"));
+        foreach ($cantidad_pay as $pay);
+        
+        return $pay->count;
     }
 }
