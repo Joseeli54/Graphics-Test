@@ -19,36 +19,48 @@ create table pedido(
 create table debito(
   cod integer,
   numero numeric(15),
-  efectivo integer,
-  paypal integer,
   tipo varchar(50),
   banco varchar(50),
-  constraint pk_cod primary key(cod));
+  constraint pk_codd primary key(cod));
   
 create table credito(
   cod integer,
   numero numeric(15),
-  efectivo integer,
-  paypal integer,
   tipo varchar(50),
-  fecha_vencimiento varchar(50),
+  fecha_vencimiento date,
   numero_credito numeric(21),
   constraint pk_codc primary key(cod));
+
+create table efectivo(
+  cod integer,
+  numero numeric(15),
+  efectivo integer,
+  constraint pk_code primary key(cod));
+
+create table paypal(
+  cod integer,
+  numero numeric(15),
+  efectivo integer,
+  constraint pk_codp primary key(cod));
   
 create table pago(
   id integer,
-  monto integer,
+  monto numeric(30,2),
   fec_pago date,
   fk_debito integer,
   fk_credito integer,
+  fk_efectivo integer,
+  fk_paypal integer,
   fk_pedido integer,
   constraint pk_pago primary key(id),
   constraint fk_ped foreign key(fk_pedido) references pedido(id),
   constraint fk_cred foreign key(fk_credito) references credito(cod),
+  constraint fk_efe foreign key(fk_efectivo) references efectivo(cod),
+  constraint fk_paypal foreign key(fk_paypal) references paypal(cod),
   constraint fk_deb foreign key(fk_debito) references debito(cod));
 
 create table detalle(
   cantidad integer,
-  monto_total integer,
+  monto_total numeric(30,2),
   fk_pago integer,
   constraint fk_pag foreign key(fk_pago) references pago(id));
