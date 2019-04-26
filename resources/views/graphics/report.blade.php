@@ -54,17 +54,17 @@
     </script>
 
     <br>
-  	<div class="card text-center">
-	 <div class="card-body">
+    <div class="card text-center">
+   <div class="card-body">
        <div id="piechart_3d" class="tamano-grafico"> </div>
-       <div class=""> Efectivo <tr> | <tr> Credito </div>
+       <div class=""> Efectivo <tr> | <tr> Credito <tr> | <tr> Debito <tr> | <tr> Paypal </div>
     </div>
     </div>
     
     <br>
     
     <div class="card text-center">
-	 <div class="card-body">
+   <div class="card-body">
        <div id="columnchart" class="tamano-grafico"></div>
     </div>
     </div>
