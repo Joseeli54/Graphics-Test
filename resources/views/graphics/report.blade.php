@@ -8,19 +8,17 @@
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
 
-      <?php $numero=11 ?>
-
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Pago', 'Porcentaje de Pago'],
-          ['Paypal', {{$numero}}],
-          ['Credito',  2],
-          ['Debito', 2],
-          ['Efectivo',    7]
+          ['Pago', 'Porcentaje'],
+          ['Paypal', {{$porc_pago->paypal}}],
+          ['Credito',  {{$porc_pago->credito}}],
+          ['Debito', {{$porc_pago->debito}}],
+          ['Efectivo', {{$porc_pago->efectivo}}]
         ]);
 
         var options = {
-          title: 'Porcentaje de Pagos',
+          title: 'Porcentaje de Metodos de Pago',
           is3D: true,
         };
 
@@ -57,7 +55,7 @@
     <div class="card text-center">
    <div class="card-body">
        <div id="piechart_3d" class="tamano-grafico"> </div>
-       <div class=""> Efectivo <tr> | <tr> Credito <tr> | <tr> Debito <tr> | <tr> Paypal </div>
+       <div class=""> <a href="#"> Efectivo </a> <tr> | <tr> <a href="#">Credito</a> <tr> | <tr> <a href="#">Debito</a> <tr> | <tr><a href="#"> Paypal</a> </div>
     </div>
     </div>
     

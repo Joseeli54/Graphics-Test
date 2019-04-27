@@ -14,25 +14,30 @@ class GraphicsController extends Controller
      */
     public function index()
     {
+        
+        $porc_pago = $this->porcentaje_pago();
 
-        return view('graphics.report');
+        return view('graphics.report', compact('porc_pago'));
     }
 
     public function porcentaje_pago(){
 
-        $cantidad_debito =(float) $this->cantidad_debito();
-        $cantidad_credito =(float) $this->cantidad_credito();
-        $cantidad_efectivo =(float) $this->cantidad_efectivo();
-        $cantidad_paypal = (float) $this->cantidad_paypal();
+        $cantidad_debito = $this->cantidad_debito();
+        $cantidad_credito = $this->cantidad_credito();
+        $cantidad_efectivo = $this->cantidad_efectivo();
+        $cantidad_paypal = $this->cantidad_paypal();
 
-        $porcentaje_debito = ( $cantidad_debito / ($cantidad_debito + $cantidad_credito + $cantidad_efectivo + $cantidad_paypal));
+        $porcentaje_debito = ( $cantidad_debito / ($cantidad_debito + $cantidad_credito + $cantidad_efectivo + $cantidad_paypal))*100;
         $porcentaje_credito = ( $cantidad_credito / ($cantidad_credito+$cantidad_debito+$cantidad_efectivo+ $cantidad_paypal))*100;
         $porcentaje_efectivo = ($cantidad_efectivo / ($cantidad_efectivo+$cantidad_credito+ $cantidad_debito+ $cantidad_paypal))*100;
         $porcentaje_paypal = ( $cantidad_paypal / ($cantidad_paypal+$cantidad_credito+ $cantidad_efectivo+ $cantidad_debito))*100;
 
-        $arreglo_porcentajes = array( $porcentaje_debito,  $porcentaje_credito, $porcentaje_efectivo, $porcentaje_paypal);
+        //$arreglo_porcentajes = array( $porcentaje_debito,  $porcentaje_credito, $porcentaje_efectivo, $porcentaje_paypal);
 
-        return $arreglo_porcentajes;
+        $objeto = (object)["debito"=>$porcentaje_debito, "credito"=>$porcentaje_credito,
+                           "efectivo"=>$porcentaje_efectivo, "paypal"=>$porcentaje_paypal]; #variable objeto
+
+        return $objeto;
     }
 
     public function cantidad_debito(){
