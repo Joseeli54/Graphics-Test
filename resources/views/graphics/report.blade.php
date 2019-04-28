@@ -11,10 +11,9 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Pago', 'Porcentaje'],
-          ['Paypal', {{$porc_pago->paypal}}],
-          ['Credito',  {{$porc_pago->credito}}],
-          ['Debito', {{$porc_pago->debito}}],
-          ['Efectivo', {{$porc_pago->efectivo}}]
+          @foreach($porc_pago as $porc)
+          ['{{$porc->tipo_pago}}', {{$porc->count}}],
+          @endforeach
         ]);
 
         var options = {
@@ -34,12 +33,10 @@
 
       function drawChart() {
       var data = google.visualization.arrayToDataTable([
-        ['Year', 'Usuarios', { role: 'style' } ],
-        ['2010', 10, 'color: gray'],
-        ['2020', 14, 'color: #76A7FA'],
-        ['2030', 16, 'opacity: 0.2'],
-        ['2040', 22, 'stroke-color: #703593; stroke-width: 4; fill-color: #C5A5CF'],
-        ['2050', 28, 'stroke-color: #871B47; stroke-opacity: 0.6; stroke-width: 8; fill-color: #BC5679; fill-opacity: 0.2']
+        ['Pedido', 'Pago', { role: 'style' } ],
+        @foreach($prom_monto_pedido as $prom)
+        ['{{$prom->tipo}}', {{$prom->sum}}, 'color: lightskyblue'],
+        @endforeach
       ]);
 
         var options = {
@@ -55,7 +52,13 @@
     <div class="card text-center">
    <div class="card-body">
        <div id="piechart_3d" class="tamano-grafico"> </div>
-       <div class=""> <a href="#"> Efectivo </a> <tr> | <tr> <a href="#">Credito</a> <tr> | <tr> <a href="#">Debito</a> <tr> | <tr><a href="#"> Paypal</a> </div>
+       <div class=""> 
+         
+           @foreach($porc_pago as $porc)
+           | <a href="#"> {{$porc->tipo_pago}}  </a> | <tr>
+           @endforeach
+        
+        </div>
     </div>
     </div>
     

@@ -17,34 +17,40 @@ insert into pedido values(5, 'oro', 'proveedor', 4);
 insert into pedido values(6, 'aluminio', 'objeto', 5);
 insert into pedido values(7, 'papel', 'objeto', 6);
 insert into pedido values(8, 'madera', 'objeto', 6);
+insert into pedido values(9, 'madera', 'proveedor', 1);
 
 -- INSERT DE CREDITOS --
 
-insert into credito values(1, 222, 'Pago de objeto', '02-05-20', 23123045739384738329);
-insert into credito values(2, 333, 'Pago de objeto', '02-05-20', 23123045739384738329);
+insert into metodo_pago values(1, 222, 'Pago de objeto',null,null, '02-05-20', 23123045739384738329,'Credito');
+insert into metodo_pago values(2, 333, 'Pago de objeto',null,null, '02-05-20', 23123045739384738329,'Credito');
 
 -- INSERT DEBITO --
 
-insert into debito values(1, 222, 'Pago de material destino', 'provincial');
-insert into debito values(2, 333, 'Pago de material destino', 'provincial');
-insert into debito values(3, 444, 'Pago a proveedores', 'mercantil');
+insert into metodo_pago values(3, 222, 'Pago de material destino','provincial',null,null,null,'Debito');
+insert into metodo_pago values(4, 333, 'Pago de material destino','provincial',null,null,null,'Debito');
+insert into metodo_pago values(5, 444, 'Pago a proveedores', 'mercantil',null,null,null,'Debito');
 
 -- INSERT PAYPAL --
 
-insert into efectivo values(1, 213, 1);
-insert into efectivo values(2, 245, 1);
+insert into metodo_pago (cod,numero_pago,descripcion,tipo_pago) values (6, 213, 'Pago de objeto', 'Efectivo');
+insert into metodo_pago (cod,numero_pago,descripcion,tipo_pago) values (7, 245, 'Pago de objeto', 'Efectivo');
 
 -- INSERT EFECTIVO --
 
-insert into paypal values(1, 213, 1);
+insert into metodo_pago (cod,numero_pago,descripcion,tipo_pago) values (8, 246, 'Pago de objeto', 'Paypal');
+
+-- INSERT OTROS PAGOS --
+
+insert into metodo_pago (cod,numero_pago,descripcion,tipo,tipo_pago) values (9, 247, 'Pago de proveedor','uphold','Digital');
 
 -- INSERT PAGO --
 
-insert into pago values(1, 187087.00, '02-03-2019', null, 1,null,null,1);
-insert into pago values(2, 9388.00, '02-03-2019', null, 2,null, null,2);
-insert into pago values(3, 2435.00, '02-04-2019', 1, null,null, null, 3);
-insert into pago values(4, 928415.00, '02-04-2019', 2, null,null, null, 4);
-insert into pago values(5, 2435.00, '03-04-2019', 3, null,null, null, 5);
-insert into pago values(6, 187087.00, '02-03-2019', null, null,1,null,6);
-insert into pago values(7, 9388.00, '02-03-2019', null, null,2, null,7);
-insert into pago values(8, 10239.00, '02-03-2019', null, null,null, 1, 8);
+insert into pago values(1, 187087.00, '02-03-2019',1,1);
+insert into pago values(2, 9388.00, '02-03-2019',2,2);
+insert into pago values(3, 2435.00, '02-04-2019',3, 3);
+insert into pago values(4, 928415.00, '02-04-2019',4,4);
+insert into pago values(5, 2435.00, '03-04-2019',5,5);
+insert into pago values(6, 187087.00, '02-03-2019',6,6);
+insert into pago values(7, 9388.00, '02-03-2019',7,7);
+insert into pago values(8, 10239.00, '02-03-2019',8,8);
+insert into pago values(9, 10239.00, '02-03-2019',9,9);
