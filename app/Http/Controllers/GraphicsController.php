@@ -16,63 +16,62 @@ class GraphicsController extends Controller
     {
         
         $porc_pago = $this->porcentaje_pago();
+        $prom_monto_pedido = $this->promedio_montos_por_pedido();
 
-        return view('graphics.report', compact('porc_pago'));
+        return view('graphics.report')->with('porc_pago',$porc_pago)->with('prom_monto_pedido',$prom_monto_pedido);
     }
 
     public function porcentaje_pago(){
 
-        $cantidad_debito = $this->cantidad_debito();
-        $cantidad_credito = $this->cantidad_credito();
-        $cantidad_efectivo = $this->cantidad_efectivo();
-        $cantidad_paypal = $this->cantidad_paypal();
+        $division_por_metodo = $this->cantidad_cliente_por_tipo();
+        $total_pedido = 
+        \DB::select(DB::raw("SELECT count(*)
+                             from pago p, pedido pe, usuario u, metodo_pago pa
+                             where pe.fk_usuario = u.cod and
+                             p.fk_pedido = pe.id and
+                             p.fk_metodo = pa.cod"));
+        foreach($total_pedido as $total);
 
-        $porcentaje_debito = ( $cantidad_debito / ($cantidad_debito + $cantidad_credito + $cantidad_efectivo + $cantidad_paypal))*100;
-        $porcentaje_credito = ( $cantidad_credito / ($cantidad_credito+$cantidad_debito+$cantidad_efectivo+ $cantidad_paypal))*100;
-        $porcentaje_efectivo = ($cantidad_efectivo / ($cantidad_efectivo+$cantidad_credito+ $cantidad_debito+ $cantidad_paypal))*100;
-        $porcentaje_paypal = ( $cantidad_paypal / ($cantidad_paypal+$cantidad_credito+ $cantidad_efectivo+ $cantidad_debito))*100;
+        foreach ($division_por_metodo as $dm){
+            $dm->count = ($dm->count/$total->count)*100;
+        }
 
-        //$arreglo_porcentajes = array( $porcentaje_debito,  $porcentaje_credito, $porcentaje_efectivo, $porcentaje_paypal);
+        return $division_por_metodo;
+    }
+    
+    public function promedio_montos_por_pedido(){
 
-        $objeto = (object)["debito"=>$porcentaje_debito, "credito"=>$porcentaje_credito,
-                           "efectivo"=>$porcentaje_efectivo, "paypal"=>$porcentaje_paypal]; #variable objeto
+        $suma_por_pedido = $this->suma_montos_por_pedido();
 
-        return $objeto;
+        foreach ($suma_por_pedido as $sp){
+            $sp->sum = $sp->sum/$sp->count;
+        }
+        
+         return $suma_por_pedido;
     }
 
-    public function cantidad_debito(){
+    public function cantidad_cliente_por_tipo(){
         
-        $cantidad_deb = 
-        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, debito d where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and d.cod = p.fk_debito;"));
-        foreach ($cantidad_deb as $deb);
+        $cant_cliente_por_tipo = 
+        \DB::select(DB::raw("SELECT pa.tipo_pago,count(*)
+                             from pago p, pedido pe, usuario u, metodo_pago pa
+                             where pe.fk_usuario = u.cod and
+                             p.fk_pedido = pe.id and
+                             p.fk_metodo = pa.cod
+                             group by pa.tipo_pago;"));
 
-        return $deb->count;
+        return $cant_cliente_por_tipo;
     }
 
-    public function cantidad_credito(){
-        
-        $cantidad_cred = 
-        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, credito c where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and c.cod = p.fk_credito;"));
-        foreach ($cantidad_cred as $cred);
+    public function suma_montos_por_pedido(){
+      
+        $sum_montos_por_pedido = 
+        \DB::select(DB::raw("SELECT pe.tipo,sum(pa.monto),count(*)
+                             from pedido pe, pago pa, usuario u
+                             where pe.fk_usuario = u.cod and
+                                   pa.fk_pedido = pe.id
+                             group by pe.tipo;"));
 
-        return $cred->count;
-    }
-
-     public function cantidad_efectivo(){
-        
-        $cantidad_efect = 
-        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, efectivo e  where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and e.cod = p.fk_efectivo;"));
-        foreach ($cantidad_efect as $efect);
-
-        return $efect->count;
-    }
-
-     public function cantidad_paypal(){
-        
-        $cantidad_pay = 
-        \DB::select(DB::raw("SELECT count(*) from pago p, pedido pe, usuario u, paypal pa where pe.id = p.fk_pedido and pe.fk_usuario = u.rif and pa.cod = p.fk_paypal;"));
-        foreach ($cantidad_pay as $pay);
-        
-        return $pay->count;
+        return $sum_montos_por_pedido;
     }
 }
