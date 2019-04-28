@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::view('/', 'page_initial');
 
 Route::resource('graphics', 'GraphicsController');
