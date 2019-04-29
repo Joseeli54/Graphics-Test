@@ -16,5 +16,6 @@
 });*/
 
 Route::view('/', 'page_initial');
-Route::view('formulas', 'formulas');
+//Route::view('formulas', 'formulas');
 Route::resource('graphics', 'GraphicsController');
+Route::resource('formulas','VistaFormulasController');

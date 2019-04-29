@@ -9,15 +9,15 @@ insert into usuario values(6, 25837263, 'Pedro', 'Pacheco', 'Alvarado', 'Stiffan
 
 -- INSERT DE LOS PEDIDOS REALIZADOS --	
 
-insert into pedido values(1, 'aluminio', 'objeto', 1);
-insert into pedido values(2, 'marmol', 'objeto', 1);
-insert into pedido values(3, 'cota', 'destino', 2);
-insert into pedido values(4, 'cota', 'destino', 3);	
-insert into pedido values(5, 'oro', 'proveedor', 4);	
-insert into pedido values(6, 'aluminio', 'objeto', 5);
-insert into pedido values(7, 'papel', 'objeto', 6);
-insert into pedido values(8, 'madera', 'objeto', 6);
-insert into pedido values(9, 'madera', 'proveedor', 1);
+insert into pedido values(1, 'aluminio', 'Objeto', 1);
+insert into pedido values(2, 'marmol', 'Objeto', 1);
+insert into pedido values(3, 'cota', 'Destino', 2);
+insert into pedido values(4, 'cota', 'Destino', 3);	
+insert into pedido values(5, 'oro', 'Proveedor', 4);	
+insert into pedido values(6, 'aluminio', 'Objeto', 5);
+insert into pedido values(7, 'papel', 'Objeto', 6);
+insert into pedido values(8, 'madera', 'Objeto', 6);
+insert into pedido values(9, 'madera', 'Proveedor', 1);
 
 -- INSERT DE CREDITOS --
 

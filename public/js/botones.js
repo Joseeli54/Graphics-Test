@@ -115,3 +115,57 @@ function mostrar4(){
     document.getElementById('boton7').style.display = 'inline';
     document.getElementById('boton8').style.display = 'none';
 }
+
+function despertar(){
+    document.getElementById('proveedor').style.display = 'block';
+    document.getElementById('btn2').style.display = 'inline';
+    document.getElementById('btn1').style.display = 'none';
+    document.getElementById('objeto').style.display = 'none';
+    document.getElementById('destino').style.display = 'none';
+    document.getElementById('btn3').style.display = 'inline';
+    document.getElementById('btn4').style.display = 'none';
+    document.getElementById('btn5').style.display = 'inline';
+    document.getElementById('btn6').style.display = 'none';
+}
+
+function dormir(){
+    document.getElementById('proveedor').style.display = 'none';
+    document.getElementById('btn1').style.display = 'inline';
+    document.getElementById('btn2').style.display = 'none';
+}
+
+function despertar1(){
+    document.getElementById('objeto').style.display = 'block';
+    document.getElementById('btn4').style.display = 'inline';
+    document.getElementById('btn3').style.display = 'none';
+    document.getElementById('proveedor').style.display = 'none';
+    document.getElementById('destino').style.display = 'none';
+    document.getElementById('btn1').style.display = 'inline';
+    document.getElementById('btn2').style.display = 'none';
+    document.getElementById('btn5').style.display = 'inline';
+    document.getElementById('btn6').style.display = 'none';
+}
+
+function dormir1(){
+    document.getElementById('objeto').style.display = 'none';
+    document.getElementById('btn3').style.display = 'inline';
+    document.getElementById('btn4').style.display = 'none';
+}
+
+function despertar2(){
+    document.getElementById('destino').style.display = 'block';
+    document.getElementById('btn6').style.display = 'inline';
+    document.getElementById('btn5').style.display = 'none';
+    document.getElementById('proveedor').style.display = 'none';
+    document.getElementById('objeto').style.display = 'none';
+    document.getElementById('btn1').style.display = 'inline';
+    document.getElementById('btn2').style.display = 'none';
+    document.getElementById('btn3').style.display = 'inline';
+    document.getElementById('btn4').style.display = 'none';
+}
+
+function dormir2(){
+    document.getElementById('destino').style.display = 'none';
+    document.getElementById('btn5').style.display = 'inline';
+    document.getElementById('btn6').style.display = 'none';
+}

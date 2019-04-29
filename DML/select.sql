@@ -24,9 +24,9 @@ group by pe.tipo;
 
 -- CONSULTAR CLIENTES QUE REALIZARON EL PAGO
 
-SELECT u.pnombre, u.snombre, u.papellido, u.sapellido, mp.tipo
+SELECT DISTINCT u.pnombre, u.snombre, u.papellido, u.sapellido, mp.tipo
 from pedido pe, pago pa, usuario u, metodo_pago mp
 where pe.fk_usuario = u.cod and
       pa.fk_pedido = pe.id and
 	  pa.fk_metodo = mp.cod and
-	  mp.tipo_pago = 'Digital';
+	  mp.tipo_pago = 'Escribir el tipo de pago';
