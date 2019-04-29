@@ -8,11 +8,12 @@
 	<link rel="stylesheet" href="{{asset('css/estilo_propio.css')}}">
 	<!--<link rel="stylesheet" href="{{asset('css/estilo_personalizado.css')}}"> -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body>
 	<nav class="navbar navbar-dark" id = "parte_inicial">
-	<a href="#" class="navbar-brand"> <b> GRAPHICS <b></a>
+	<a href="/" class="navbar-brand"> <b> GRAPHICS <b></a>
     </nav>
 	<div class="container">
 		@yield('content')

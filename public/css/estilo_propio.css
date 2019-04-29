@@ -55,6 +55,31 @@
 	transition: ease 0.3s;
 }
 
+.opciones{
+	width: 100%;
+	background-color: #FFA52D;
+	border-radius: 0.5ex;
+	padding: 1%;
+}
+
+.opciones button{
+	color: white;
+	text-decoration: none;
+	background: #FFA52D;
+	padding: 1%;
+}
+
+.opciones button:hover{
+	background: rgb(172, 106, 19);
+	transition: ease 0.3s;
+}
+
+.subpagina{
+	width: 100%;
+	background-color: rgb(250, 244, 226);
+	margin-top:-2px;
+}
+
 .contenedor-tipo-usuario {
 	display: flex;
 	justify-content: center;
