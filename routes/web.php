@@ -16,5 +16,5 @@
 });*/
 
 Route::view('/', 'page_initial');
-
+Route::view('formulas', 'formulas');
 Route::resource('graphics', 'GraphicsController');

@@ -16,6 +16,7 @@
             <div> <br> <p class="text-center"> En la presente pagina se apreciaran dos graficas, relacionadas 
               con el metodo de pago que realizaron los usuarios en el sistema 
               de compras de productos almacenados. <p></div>
+						<a href="/formulas"> Formulas utilizadas en las graficas </a>
 		</div>
 	</div>
 </div>
