@@ -52,20 +52,40 @@
    <div class="card-body" style = "padding: 0rem">
        <div id="piechart_3d" class="tamano-grafico"> </div>
        <div class="opciones"> 
-       <button id="boton1" class="btn" onclick="mostrar()"> Debito </button>
-       <button id="boton2" class="btn" style="display:none" onclick="ocultar()"> Debito</button>
+       <button id="boton1" class="btn" onclick="mostrar()"> 
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Debito </button>
+       <button id="boton2" class="btn" style="display:none" onclick="ocultar()"> 
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Debito</button>
        <tr>
-       <button id="boton3" class="btn" onclick="mostrar1()"> Credito </button>
-       <button id="boton4" class="btn" style="display:none" onclick="ocultar1()"> Credito </button>
+       <button id="boton3" class="btn" onclick="mostrar1()"> 
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Credito </button>
+       <button id="boton4" class="btn" style="display:none" onclick="ocultar1()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Credito </button>
        <tr>
-       <button id="boton5" class="btn" onclick="mostrar2()"> Paypal </button>
-       <button id="boton6" class="btn" style="display:none" onclick="ocultar2()"> Paypal </button>
+       <button id="boton5" class="btn" onclick="mostrar2()"> 
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Paypal </button>
+       <button id="boton6" class="btn" style="display:none" onclick="ocultar2()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Paypal </button>
        <tr>
-       <button id="boton7" class="btn" onclick="mostrar3()"> Efectivo </button>
-       <button id="boton8" class="btn" style="display:none" onclick="ocultar3()"> Efectivo </button>
+       <button id="boton7" class="btn" onclick="mostrar3()">
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Efectivo </button>
+       <button id="boton8" class="btn" style="display:none" onclick="ocultar3()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Efectivo </button>
        <tr>           
-       <button id="boton9" class="btn" onclick="mostrar4()"> Digital </button>      
-       <button id="boton10" class="btn" style="display:none" onclick="ocultar4()"> Digital </button>       
+       <button id="boton9" class="btn" onclick="mostrar4()"> 
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Digital </button>      
+       <button id="boton10" class="btn" style="display:none" onclick="ocultar4()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Digital </button>       
        <tr>
 
        </div>
@@ -82,9 +102,9 @@
             
             echo "<table style='width: 100%;' class='text-center'>";
             echo "<tr style='border: #ffc107 0.5px solid;'>";
-            echo "  <th> Numero  </th>";
+            echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
-            echo "  <th> Primer Nombre  </th>";
+            echo "  <th> First Name  </th>";
             echo "  <th> Segundo Nombre </th>";
             echo "  <th> Primer Apellido </th>";
             echo "  <th> Segundo Apellido </th>";
@@ -119,9 +139,9 @@
             
             echo "<table style='width: 100%;' class='text-center'>";
             echo "<tr style='border: #ffc107 0.5px solid;'>";
-            echo "  <th> Numero  </th>";
+            echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
-            echo "  <th> Primer Nombre  </th>";
+            echo "  <th> First Name  </th>";
             echo "  <th> Segundo Nombre </th>";
             echo "  <th> Primer Apellido </th>";
             echo "  <th> Segundo Apellido </th>";
@@ -155,9 +175,9 @@
             
             echo "<table style='width: 100%;' class='text-center'>";
             echo "<tr style='border: #ffc107 0.5px solid;'>";
-            echo "  <th> Numero  </th>";
+            echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
-            echo "  <th> Primer Nombre  </th>";
+            echo "  <th> First Name  </th>";
             echo "  <th> Segundo Nombre </th>";
             echo "  <th> Primer Apellido </th>";
             echo "  <th> Segundo Apellido </th>";
@@ -191,9 +211,9 @@
             
             echo "<table style='width: 100%;' class='text-center'>";
             echo "<tr style='border: #ffc107 0.5px solid;'>";
-            echo "  <th> Numero  </th>";
+            echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
-            echo "  <th> Primer Nombre  </th>";
+            echo "  <th> First Name  </th>";
             echo "  <th> Segundo Nombre </th>";
             echo "  <th> Primer Apellido </th>";
             echo "  <th> Segundo Apellido </th>";
@@ -227,9 +247,9 @@
 
                   echo "<table style='width: 100%;' class='text-center'>";
                   echo "<tr style='border: #ffc107 0.5px solid;'>";
-                  echo "  <th> Numero  </th>";
+                  echo "  <th> Number  </th>";
                   echo "  <th> Cedula </th>";
-                  echo "  <th> Primer Nombre  </th>";
+                  echo "  <th> First Name  </th>";
                   echo "  <th> Segundo Nombre </th>";
                   echo "  <th> Primer Apellido </th>";
                   echo "  <th> Segundo Apellido </th>";

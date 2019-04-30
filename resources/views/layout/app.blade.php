@@ -6,6 +6,7 @@
 	<link rel="icon" href="{{asset('img/dolar.png')}}" type="image/png">
 	<link rel="stylesheet" href="{{asset('https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css')}}" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{asset('css/estilo_propio.css')}}">
+	
 	<!--<link rel="stylesheet" href="{{asset('css/estilo_personalizado.css')}}"> -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
