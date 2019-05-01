@@ -7,10 +7,10 @@
 	<div class="row">         
 		<div class="col-md-12 contenedor-tipo-usuario">
 			<div id="cuadro" class="contenedor-usuario card" style="width:auto; padding: 1.25rem">
-            Formula del Porcentaje
+            Percentage Formula
                 <img id="auto" style="width: 600px; height:200px;" 
                 class="text-center" src="{{asset('img/porcentaje.png')}}">
-            Formula del Promedio
+            Average Formula
                 <img id="auto" style="width: 600px; height:200px;" 
                 class="text-center" src="{{asset('img/promedio.png')}}">	
             </div>
