@@ -50,6 +50,23 @@
     <br>
     <div class="card text-center">
    <div class="card-body" style = "padding: 0rem">
+   <?php 
+
+      $usuario =
+      DB::select(DB::raw("SELECT count(us.*)
+      from (select distinct u.pnombre, u.snombre, pa.tipo_pago
+      from pago p, pedido pe, usuario u, metodo_pago pa
+      where pe.fk_usuario = u.cod and
+            p.fk_pedido = pe.id and
+          p.fk_metodo = pa.cod) us;"));
+      foreach ($usuario as $u) {
+        $numero = $u->count;
+      }
+
+      ?>
+
+      <div class="label-cantidad" style ="font-family:initial"> Number of payments made: {{$numero}} </div>
+
        <div id="piechart_3d" class="tamano-grafico"> </div>
        <div class="opciones"> 
        <button id="boton1" class="btn" onclick="mostrar()"> 
@@ -100,8 +117,8 @@
                   pa.fk_metodo = mp.cod and
                   mp.tipo_pago = 'Debito';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
             echo "  <th> First Name  </th>";
@@ -111,7 +128,7 @@
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->cod . "</td>";
               echo "<td> " . $u->ci . "</td>";
               echo "<td> " . $u->pnombre . "</td>";
@@ -137,8 +154,8 @@
                   pa.fk_metodo = mp.cod and
                   mp.tipo_pago = 'Credito';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center' >";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
             echo "  <th> First Name  </th>";
@@ -148,7 +165,7 @@
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->cod . "</td>";
               echo "<td> " . $u->ci . "</td>";
               echo "<td> " . $u->pnombre . "</td>";
@@ -166,15 +183,16 @@
           <div id="paypal" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci,u.pnombre, u.snombre, u.papellido, u.sapellido, mp.tipo
+            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci,u.pnombre, u.snombre, u.papellido, 
+            u.sapellido, mp.tipo
             from pedido pe, pago pa, usuario u, metodo_pago mp
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
                   pa.fk_metodo = mp.cod and
                   mp.tipo_pago = 'Paypal';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
             echo "  <th> First Name  </th>";
@@ -184,7 +202,7 @@
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->cod . "</td>";
               echo "<td> " . $u->ci . "</td>";
               echo "<td> " . $u->pnombre . "</td>";
@@ -202,15 +220,16 @@
           <div id="efectivo" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci,u.pnombre, u.snombre, u.papellido, u.sapellido, mp.tipo
+            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci,u.pnombre, u.snombre, u.papellido, 
+            u.sapellido, mp.tipo
             from pedido pe, pago pa, usuario u, metodo_pago mp
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
                   pa.fk_metodo = mp.cod and
                   mp.tipo_pago = 'Efectivo';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
             echo "  <th> Cedula </th>";
             echo "  <th> First Name  </th>";
@@ -220,7 +239,7 @@
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->cod . "</td>";
               echo "<td> " . $u->ci . "</td>";
               echo "<td> " . $u->pnombre . "</td>";
@@ -238,15 +257,16 @@
           <div id="digital" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci,u.pnombre, u.snombre, u.papellido, u.sapellido, mp.tipo
+            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci,u.pnombre, u.snombre, u.papellido, 
+            u.sapellido, mp.tipo
             from pedido pe, pago pa, usuario u, metodo_pago mp
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
                   pa.fk_metodo = mp.cod and
                   mp.tipo_pago = 'Digital';"));
 
-                  echo "<table style='width: 100%;' class='text-center'>";
-                  echo "<tr style='border: #ffc107 0.5px solid;'>";
+                  echo "<table class='subreporte-tabla text-center'>";
+                  echo "<tr class = 'subreporte-titulo-color'>";
                   echo "  <th> Number  </th>";
                   echo "  <th> Cedula </th>";
                   echo "  <th> First Name  </th>";
@@ -257,7 +277,7 @@
                   echo "</tr>";
 
                   foreach ($usuario as $u) {
-                    echo "<tr style='border: #ffc107 0.5px solid;'>";
+                    echo "<tr class = 'subreporte-info'>";
                     echo "<td> " . $u->cod . "</td>";
                     echo "<td> " . $u->ci . "</td>";
                     echo "<td> " . $u->pnombre . "</td>";
@@ -280,16 +300,41 @@
     
     <div class="card text-center">
    <div class="card-body" style = "padding: 0rem">
+    <?php 
+
+        $usuario =
+        DB::select(DB::raw("SELECT count(*)
+        from pago pa, pedido pe
+        where pa.fk_pedido = pe.id;"));
+        foreach ($usuario as $u) {
+          $numero = $u->count;
+        }
+    
+    ?>
+
+   <div class="label-cantidad" style ="font-family:initial"> Number of orders made: {{$numero}} </div>
        <div id="columnchart" class="tamano-grafico"></div>
        <div class="opciones"> 
-       <button id="btn1" class="btn" onclick="despertar()"> Proveedor </button>
-       <button id="btn2" class="btn" style="display:none" onclick="dormir()"> Proveedor </button>
+       <button id="btn1" class="btn" onclick="despertar()">
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Proveedor </button>
+       <button id="btn2" class="btn" style="display:none" onclick="dormir()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Proveedor </button>
        <tr>
-       <button id="btn3" class="btn" onclick="despertar1()"> Objeto </button>
-       <button id="btn4" class="btn" style="display:none" onclick="dormir1()"> Objeto </button>
+       <button id="btn3" class="btn" onclick="despertar1()">
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Objeto </button>
+       <button id="btn4" class="btn" style="display:none" onclick="dormir1()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Objeto </button>
        <tr>
-       <button id="btn5" class="btn" onclick="despertar2()"> Destino </button>
-       <button id="btn6" class="btn" style="display:none" onclick="dormir2()"> Destino </button>
+       <button id="btn5" class="btn" onclick="despertar2()">
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Destino </button>
+       <button id="btn6" class="btn" style="display:none" onclick="dormir2()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Destino </button>
        <tr>
        </div>
     </div>
@@ -298,27 +343,30 @@
         <div id="objeto" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, pa.monto, pa.fec_pago
+            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, 
+            pa.monto, pa.fec_pago, pe.nombre
             from usuario u, pago pa, pedido pe, metodo_pago mp
             where pa.fk_pedido = pe.id and
                   pe.fk_usuario = u.cod and
                 pa.fk_metodo = mp.cod and
                 pe.tipo = 'Objeto';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Nombre  </th>";
             echo "  <th> Apellido </th>";
             echo "  <th> Tipo de Pago  </th>";
+            echo "  <th> Nombre del Producto </th>";
             echo "  <th> Monto </th>";
             echo "  <th> Fecha de Pago </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->pnombre . "</td>";
               echo "<td> " . $u->papellido . "</td>";
               echo "<td> " . $u->tipo_pago . "</td>";
+              echo "<td> " . $u->nombre . "</td>";
               echo "<td> " . $u->monto . "</td>";
               echo "<td> " . $u->fec_pago . "</td>";
               echo "</tr>";
@@ -333,27 +381,30 @@
         <div id="proveedor" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, pa.monto, pa.fec_pago
+            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, 
+            pa.monto, pa.fec_pago, pe.nombre
             from usuario u, pago pa, pedido pe, metodo_pago mp
             where pa.fk_pedido = pe.id and
                   pe.fk_usuario = u.cod and
                 pa.fk_metodo = mp.cod and
                 pe.tipo = 'Proveedor';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Nombre  </th>";
             echo "  <th> Apellido </th>";
             echo "  <th> Tipo de Pago  </th>";
+            echo "  <th> Nombre del Producto </th>";
             echo "  <th> Monto </th>";
             echo "  <th> Fecha de Pago </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->pnombre . "</td>";
               echo "<td> " . $u->papellido . "</td>";
               echo "<td> " . $u->tipo_pago . "</td>";
+              echo "<td> " . $u->nombre . "</td>";
               echo "<td> " . $u->monto . "</td>";
               echo "<td> " . $u->fec_pago . "</td>";
               echo "</tr>";
@@ -368,27 +419,30 @@
         <div id="destino" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, pa.monto, pa.fec_pago
+            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, 
+            pa.monto, pa.fec_pago, pe.nombre
             from usuario u, pago pa, pedido pe, metodo_pago mp
             where pa.fk_pedido = pe.id and
                   pe.fk_usuario = u.cod and
                 pa.fk_metodo = mp.cod and
                 pe.tipo = 'Destino';"));
             
-            echo "<table style='width: 100%;' class='text-center'>";
-            echo "<tr style='border: #ffc107 0.5px solid;'>";
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Nombre  </th>";
             echo "  <th> Apellido </th>";
             echo "  <th> Tipo de Pago  </th>";
+            echo "  <th> Nombre del Producto  </th>";
             echo "  <th> Monto </th>";
             echo "  <th> Fecha de Pago </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
-              echo "<tr style='border: #ffc107 0.5px solid;'>";
+              echo "<tr class = 'subreporte-info'>";
               echo "<td> " . $u->pnombre . "</td>";
               echo "<td> " . $u->papellido . "</td>";
               echo "<td> " . $u->tipo_pago . "</td>";
+              echo "<td> " . $u->nombre . "</td>";
               echo "<td> " . $u->monto . "</td>";
               echo "<td> " . $u->fec_pago . "</td>";
               echo "</tr>";

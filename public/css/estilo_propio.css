@@ -5,7 +5,8 @@
 #parte_final{
 	color:white;
 	background-color: #FFA52D; 
-	padding-top: 10px
+	padding-top: 0.80%;
+	padding-bottom: 0.10%
 }
 
 .tamano-grafico{
@@ -55,6 +56,16 @@
 	transition: ease 0.3s;
 }
 
+.formula a{
+	color: #5ec3c0;
+	text-decoration: none;
+}
+
+.formula a:hover {
+	color: #ff91a4;
+	transition: ease 0.3s;
+}
+
 .opciones{
 	width: 100%;
 	background-color: #FFA52D;
@@ -91,6 +102,26 @@
 	.contenedor-usuario {
 		width: 51%;
 	}
+}
+
+.subreporte-info{
+	border: #ffc107 0.5px solid; font-family: monospace; font-size: 110%
+}
+
+.subreporte-titulo-color{
+	border: #ffc107 0.5px solid;
+    background-color: rgb(240, 221, 163);
+}
+
+.label-cantidad{
+	border: #cfcec8 0.5px solid;
+	background-color: rgb(240, 221, 163);
+	border-radius: 0.10rem;
+	width: 100%
+}
+
+.subreporte-tabla{
+	width: 100%;
 }
 
 .glyphicon{

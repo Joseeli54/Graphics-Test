@@ -14,7 +14,11 @@
 
 <body>
 	<nav class="navbar navbar-dark" id = "parte_inicial">
-	<a href="/" class="navbar-brand"> <b> GRAPHICS <b></a>
+	<a href="/" class="navbar-brand" style = "padding-top: 0rem;
+    padding-bottom: 0rem;">
+	<img id="auto" style="width: 50px; height:50px; float:left" 
+    class="text-center" src="{{asset('img/dolar.png')}}">
+	<div style = "margin-top:8%"><b> GRAPHICS <b></div></a>
     </nav>
 	<div class="container">
 		@yield('content')
@@ -22,9 +26,8 @@
 
     <footer>
 		<div id = "parte_final">
-			<div class="row">
 				<div class="col-md-12 text-center">
-					<p id="texto-footer">GRAPHICS - Pagina de Graficas de Pagos y Pedidos - 
+					<p id="texto-footer">GRAPHICS - Payments and Orders Graphics Page - 
 						<script type="text/javascript">
 							var fecha = new Date();
 							var anio = fecha.getFullYear();
@@ -33,7 +36,6 @@
 						</script>
 					</p>
 				</div>
-			</div>
 		</div>
 	</footer>
 </body>
