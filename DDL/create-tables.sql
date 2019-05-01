@@ -14,7 +14,8 @@ create table pedido(
    tipo varchar(200),
    fk_usuario integer,
    constraint pk_id primary key(id),
-   constraint fk_rif foreign key(fk_usuario) references usuario(cod));
+   constraint fk_rif foreign key(fk_usuario) references usuario(cod),
+   check(tipo in('Object','Provider','Destination','Material')));
    
   /*create table debito(
   cod integer,
@@ -54,7 +55,7 @@ create table pedido(
   tipo_pago varchar(40),
   constraint pk_cod primary key(cod),
   constraint pago_check_tipo
-  check(tipo_pago in('Efectivo','Debito','Credito','Paypal','Digital'))
+  check(tipo_pago in('Cash','Debit','Credit','Paypal','Digital'))
   );
   
 create table pago(

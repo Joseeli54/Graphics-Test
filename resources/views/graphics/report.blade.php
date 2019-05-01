@@ -9,14 +9,14 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Pago', 'Porcentaje'],
+          ['Payment', 'Percentage'],
           @foreach($porc_pago as $porc)
           ['{{$porc->tipo_pago}}', {{$porc->count}}],
           @endforeach
         ]);
 
         var options = {
-          title: 'Porcentajes de la Cantidad de Pagos con Respecto a su Metodo',
+          title: 'Percentage of the amount of payments per method.',
           is3D: true,
         };
 
@@ -39,7 +39,7 @@
       ]);
 
         var options = {
-          title: 'Promedio de Pagos con Respecto al Tipo de Pedido',
+          title: 'Average of payments made per order type',
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
@@ -54,7 +54,7 @@
 
       $usuario =
       DB::select(DB::raw("SELECT count(us.*)
-      from (select distinct u.pnombre, u.snombre, pa.tipo_pago
+      from (select distinct u.pnombre, u.snombre, pa.tipo_pago, pa.tipo
       from pago p, pedido pe, usuario u, metodo_pago pa
       where pe.fk_usuario = u.cod and
             p.fk_pedido = pe.id and
@@ -65,23 +65,23 @@
 
       ?>
 
-      <div class="label-cantidad" style ="font-family:initial"> Number of payments made: {{$numero}} </div>
+      <div class="label-cantidad" style ="font-family:initial"> Number of payments made for person: {{$numero}} </div>
 
        <div id="piechart_3d" class="tamano-grafico"> </div>
        <div class="opciones"> 
        <button id="boton1" class="btn" onclick="mostrar()"> 
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Debito </button>
+        Debit </button>
        <button id="boton2" class="btn" style="display:none" onclick="ocultar()"> 
        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        Debito</button>
+        Debit</button>
        <tr>
        <button id="boton3" class="btn" onclick="mostrar1()"> 
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Credito </button>
+        Credit </button>
        <button id="boton4" class="btn" style="display:none" onclick="ocultar1()">
        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        Credito </button>
+        Credit </button>
        <tr>
        <button id="boton5" class="btn" onclick="mostrar2()"> 
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -92,10 +92,10 @@
        <tr>
        <button id="boton7" class="btn" onclick="mostrar3()">
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Efectivo </button>
+        Cash </button>
        <button id="boton8" class="btn" style="display:none" onclick="ocultar3()">
        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        Efectivo </button>
+        Cash </button>
        <tr>           
        <button id="boton9" class="btn" onclick="mostrar4()"> 
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -115,16 +115,16 @@
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
                   pa.fk_metodo = mp.cod and
-                  mp.tipo_pago = 'Debito';"));
+                  mp.tipo_pago = 'Debit';"));
             
             echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
-            echo "  <th> Cedula </th>";
+            echo "  <th> Identification Card </th>";
             echo "  <th> First Name  </th>";
-            echo "  <th> Segundo Nombre </th>";
-            echo "  <th> Primer Apellido </th>";
-            echo "  <th> Segundo Apellido </th>";
+            echo "  <th> Second Name </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Second Surname </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
@@ -152,16 +152,16 @@
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
                   pa.fk_metodo = mp.cod and
-                  mp.tipo_pago = 'Credito';"));
+                  mp.tipo_pago = 'Credit';"));
             
-            echo "<table class='subreporte-tabla text-center' >";
+            echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
-            echo "  <th> Cedula </th>";
+            echo "  <th> Identification Card </th>";
             echo "  <th> First Name  </th>";
-            echo "  <th> Segundo Nombre </th>";
-            echo "  <th> Primer Apellido </th>";
-            echo "  <th> Segundo Apellido </th>";
+            echo "  <th> Second Name </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Second Surname </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
@@ -194,11 +194,11 @@
             echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
-            echo "  <th> Cedula </th>";
+            echo "  <th> Identification Card </th>";
             echo "  <th> First Name  </th>";
-            echo "  <th> Segundo Nombre </th>";
-            echo "  <th> Primer Apellido </th>";
-            echo "  <th> Segundo Apellido </th>";
+            echo "  <th> Second Name </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Second Surname </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
@@ -226,16 +226,16 @@
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
                   pa.fk_metodo = mp.cod and
-                  mp.tipo_pago = 'Efectivo';"));
+                  mp.tipo_pago = 'Cash';"));
             
             echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
             echo "  <th> Number  </th>";
-            echo "  <th> Cedula </th>";
+            echo "  <th> Identification Card </th>";
             echo "  <th> First Name  </th>";
-            echo "  <th> Segundo Nombre </th>";
-            echo "  <th> Primer Apellido </th>";
-            echo "  <th> Segundo Apellido </th>";
+            echo "  <th> Second Name </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Second Surname </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
@@ -265,16 +265,16 @@
                   pa.fk_metodo = mp.cod and
                   mp.tipo_pago = 'Digital';"));
 
-                  echo "<table class='subreporte-tabla text-center'>";
-                  echo "<tr class = 'subreporte-titulo-color'>";
-                  echo "  <th> Number  </th>";
-                  echo "  <th> Cedula </th>";
-                  echo "  <th> First Name  </th>";
-                  echo "  <th> Segundo Nombre </th>";
-                  echo "  <th> Primer Apellido </th>";
-                  echo "  <th> Segundo Apellido </th>";
-                  echo "  <th> Tipo </th>";
-                  echo "</tr>";
+              echo "<table class='subreporte-tabla text-center'>";
+              echo "<tr class = 'subreporte-titulo-color'>";
+              echo "  <th> Number  </th>";
+              echo "  <th> Identification Card </th>";
+              echo "  <th> First Name  </th>";
+              echo "  <th> Second Name </th>";
+              echo "  <th> Surname </th>";
+              echo "  <th> Second Surname </th>";
+              echo "  <th> Type </th>";
+              echo "</tr>";
 
                   foreach ($usuario as $u) {
                     echo "<tr class = 'subreporte-info'>";
@@ -317,24 +317,31 @@
        <div class="opciones"> 
        <button id="btn1" class="btn" onclick="despertar()">
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Proveedor </button>
+        Provider </button>
        <button id="btn2" class="btn" style="display:none" onclick="dormir()">
        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        Proveedor </button>
+        Provider </button>
        <tr>
        <button id="btn3" class="btn" onclick="despertar1()">
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Objeto </button>
+        Object </button>
        <button id="btn4" class="btn" style="display:none" onclick="dormir1()">
        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        Objeto </button>
+        Object </button>
        <tr>
        <button id="btn5" class="btn" onclick="despertar2()">
        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Destino </button>
+        Destination </button>
        <button id="btn6" class="btn" style="display:none" onclick="dormir2()">
        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        Destino </button>
+        Destination </button>
+       <tr>
+       <button id="btn7" class="btn" onclick="despertar3()">
+       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Material </button>
+       <button id="btn8" class="btn" style="display:none" onclick="dormir3()">
+       <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        Material </button>
        <tr>
        </div>
     </div>
@@ -349,16 +356,16 @@
             where pa.fk_pedido = pe.id and
                   pe.fk_usuario = u.cod and
                 pa.fk_metodo = mp.cod and
-                pe.tipo = 'Objeto';"));
+                pe.tipo = 'Object';"));
             
             echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
-            echo "  <th> Nombre  </th>";
-            echo "  <th> Apellido </th>";
-            echo "  <th> Tipo de Pago  </th>";
-            echo "  <th> Nombre del Producto </th>";
-            echo "  <th> Monto </th>";
-            echo "  <th> Fecha de Pago </th>";
+            echo "  <th> First Name  </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Payment Type  </th>";
+            echo "  <th> Product Name  </th>";
+            echo "  <th> Payment </th>";
+            echo "  <th> Payment Date </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
@@ -387,16 +394,16 @@
             where pa.fk_pedido = pe.id and
                   pe.fk_usuario = u.cod and
                 pa.fk_metodo = mp.cod and
-                pe.tipo = 'Proveedor';"));
+                pe.tipo = 'Provider';"));
             
             echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
-            echo "  <th> Nombre  </th>";
-            echo "  <th> Apellido </th>";
-            echo "  <th> Tipo de Pago  </th>";
-            echo "  <th> Nombre del Producto </th>";
-            echo "  <th> Monto </th>";
-            echo "  <th> Fecha de Pago </th>";
+            echo "  <th> First Name  </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Payment Type  </th>";
+            echo "  <th> Product Name  </th>";
+            echo "  <th> Payment </th>";
+            echo "  <th> Payment Date </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
@@ -425,16 +432,54 @@
             where pa.fk_pedido = pe.id and
                   pe.fk_usuario = u.cod and
                 pa.fk_metodo = mp.cod and
-                pe.tipo = 'Destino';"));
+                pe.tipo = 'Destination';"));
             
             echo "<table class='subreporte-tabla text-center'>";
             echo "<tr class = 'subreporte-titulo-color'>";
-            echo "  <th> Nombre  </th>";
-            echo "  <th> Apellido </th>";
-            echo "  <th> Tipo de Pago  </th>";
-            echo "  <th> Nombre del Producto  </th>";
-            echo "  <th> Monto </th>";
-            echo "  <th> Fecha de Pago </th>";
+            echo "  <th> First Name  </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Payment Type  </th>";
+            echo "  <th> Product Name  </th>";
+            echo "  <th> Payment </th>";
+            echo "  <th> Payment Date </th>";
+            echo "</tr>";
+            
+            foreach ($usuario as $u) {
+              echo "<tr class = 'subreporte-info'>";
+              echo "<td> " . $u->pnombre . "</td>";
+              echo "<td> " . $u->papellido . "</td>";
+              echo "<td> " . $u->tipo_pago . "</td>";
+              echo "<td> " . $u->nombre . "</td>";
+              echo "<td> " . $u->monto . "</td>";
+              echo "<td> " . $u->fec_pago . "</td>";
+              echo "</tr>";
+            }
+            
+            //echo "<tr>  <td>" . $arr[0] . "</td> <td>" . $arr[1] ."</td>  </tr>" ;
+            echo "</table>";
+            //echo $u->pnombre.' '.$u->snombre.' '.$u->papellido.' '.$u->sapellido.' '.$u->tipo.'<br>';
+          ?>
+        </div>
+
+        <div id="material" style="display:none" class="subpagina"> 
+          <?php 
+            $usuario =
+            DB::select(DB::raw("SELECT DISTINCT u.pnombre,u.papellido,mp.tipo_pago, 
+            pa.monto, pa.fec_pago, pe.nombre
+            from usuario u, pago pa, pedido pe, metodo_pago mp
+            where pa.fk_pedido = pe.id and
+                  pe.fk_usuario = u.cod and
+                pa.fk_metodo = mp.cod and
+                pe.tipo = 'Material';"));
+            
+            echo "<table class='subreporte-tabla text-center'>";
+            echo "<tr class = 'subreporte-titulo-color'>";
+            echo "  <th> First Name  </th>";
+            echo "  <th> Surname </th>";
+            echo "  <th> Payment Type  </th>";
+            echo "  <th> Product Name  </th>";
+            echo "  <th> Payment </th>";
+            echo "  <th> Payment Date </th>";
             echo "</tr>";
             
             foreach ($usuario as $u) {
