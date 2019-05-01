@@ -3,6 +3,8 @@
 
 @section('content')
     
+    <!-- Los codigos en javascript provenientes de Google Chart -->
+
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
@@ -47,6 +49,10 @@
       }
     </script>
 
+    <!-- Se esta realizando una subconsulta de la cantidad de persona
+    que realizaron un pago. No se repetira si una persona hizo dos pagos
+    iguales -->
+
     <br>
     <div class="card text-center">
    <div class="card-body" style = "padding: 0rem">
@@ -65,7 +71,11 @@
 
       ?>
 
-      <div class="label-cantidad" style ="font-family:initial"> Number of payments made for person: {{$numero}} </div>
+      <!-- Se escogieron dos botones, uno invisible y otro visible, 
+			cada vez que se presione uno de los botones desaparecera y sera
+			visible el otro, asi sucesivamente -->
+      <div class="label-cantidad" style ="font-family:initial"> 
+      Number of payments made for person: {{$numero}} </div>
 
        <div id="piechart_3d" class="tamano-grafico"> </div>
        <div class="opciones"> 
@@ -107,10 +117,20 @@
 
        </div>
 
+       <!-- Los bloques acontinuacion estan display = none
+        por lo tanto, no seran visibles, pero cuando se toque alguno
+        de los botones podra verse cada bloque que pertenezca al
+        boton correspondiente a el -->
+
+      <!-- Se esta realizando una consulta de los datos de las persona
+        que realizaron un pago. No se repetira si una persona hizo dos pagos
+        iguales -->
+
         <div id="debito" style="display:none" class="subpagina"> 
           <?php 
             $usuario =
-            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci, u.pnombre, u.snombre, u.papellido, u.sapellido, mp.tipo
+            DB::select(DB::raw("SELECT DISTINCT u.cod, u.ci, u.pnombre, u.snombre, 
+            u.papellido, u.sapellido, mp.tipo
             from pedido pe, pago pa, usuario u, metodo_pago mp
             where pe.fk_usuario = u.cod and
                   pa.fk_pedido = pe.id and
@@ -297,6 +317,9 @@
     </div>
     
     <br>
+
+    <!-- Se esta realizando una consulta de la cantidad de persona
+        que realizaron un pedido. -->
     
     <div class="card text-center">
    <div class="card-body" style = "padding: 0rem">
@@ -311,6 +334,10 @@
         }
     
     ?>
+
+    <!-- Se escogieron dos botones, uno invisible y otro visible, 
+			cada vez que se presione uno de los botones desaparecera y sera
+			visible el otro, asi sucesivamente -->
 
    <div class="label-cantidad" style ="font-family:initial"> Number of orders made: {{$numero}} </div>
        <div id="columnchart" class="tamano-grafico"></div>
@@ -345,6 +372,15 @@
        <tr>
        </div>
     </div>
+
+    <!-- Los bloques acontinuacion estan display = none
+    por lo tanto, no seran visibles, pero cuando se toque alguno
+    de los botones podra verse cada bloque que pertenezca al
+    boton correspondiente a el -->
+
+    <!-- Se esta realizando una consulta de los datos de la persona
+        que realizaron un tipo pedido. (Object, Destination, Provider, Material) -->
+
     </div>
 
         <div id="objeto" style="display:none" class="subpagina"> 
@@ -501,6 +537,8 @@
 
     
     <br>
+
+    <!-- Aqui se aprecia la referencia al codigo en Javascript encargado de controlar los botones -->
 
     <script src="{{ asset('js/botones.js') }}"></script>
 

@@ -14,13 +14,15 @@ class GraphicsController extends Controller
      */
     public function index()
     {
-        
+        // Se llaman los metodos de porcentaje de pago y promedio para pasarse a la vista
         $porc_pago = $this->porcentaje_pago();
         $prom_monto_pedido = $this->promedio_montos_por_pedido();
 
         return view('graphics.report')->with('porc_pago',$porc_pago)->with('prom_monto_pedido',$prom_monto_pedido);
     }
 
+
+    //Esta funcion esta encargada de calcular el porcentaje de pagos que se realizan por metodo
     public function porcentaje_pago(){
 
         $division_por_metodo = $this->cantidad_cliente_por_tipo();
@@ -39,6 +41,7 @@ class GraphicsController extends Controller
         return $division_por_metodo;
     }
     
+    //Esta funcion esta encargada de calcular el promedio de pagos que se hace por el tipo de pedido
     public function promedio_montos_por_pedido(){
 
         $suma_por_pedido = $this->suma_montos_por_pedido();
@@ -50,6 +53,8 @@ class GraphicsController extends Controller
          return $suma_por_pedido;
     }
 
+
+    //Hago la consulta de la cantidad de clientes que realiza un pago con uno de los metodos de pago.
     public function cantidad_cliente_por_tipo(){
         
         $cant_cliente_por_tipo = 
@@ -63,6 +68,7 @@ class GraphicsController extends Controller
         return $cant_cliente_por_tipo;
     }
 
+    //Hago la consulta de la suma de montos que se realizan por un tipo de pedido. Incluyendo el total.
     public function suma_montos_por_pedido(){
       
         $sum_montos_por_pedido = 
