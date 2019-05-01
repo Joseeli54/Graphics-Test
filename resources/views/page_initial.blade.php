@@ -14,6 +14,10 @@
 			<i class="" aria-hidden="true"></i></a>
 			</div>
 
+      <!-- Se escogieron dos botones, uno invisible y otro visible, 
+			cada vez que se presione uno de los botones desaparecera y sera
+			visible el otro, asi sucesivamente -->
+
 			<div class="opciones" style="margin-top:2%"> 
       <button id="abrir" class="btn" onclick="mostrar()"> 
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -24,6 +28,8 @@
       <tr>
       </div>
 						
+			<!-- El presente bloque esta invisible, se pasara a visible 
+			una vez se toque el boton con la funcion mostrar -->
 			<div id="intro" style="display:none"> 
 			<p class="subreporte-info justify" 
 						style="padding:1%; margin-top:-2px"> 
@@ -32,6 +38,10 @@
 						system of stored products. To see them, touch the 
 						word "graphics" below the image.<p>		
 			</div>
+
+			<!-- Se escogieron dos botones, uno invisible y otro visible, 
+			cada vez que se presione uno de los botones desaparecera y sera
+			visible el otro, asi sucesivamente -->
 
 			<div class="opciones" style="margin-top:2%"> 
       <button id="abrir1" class="btn" onclick="mostrar1()"> 
@@ -42,39 +52,29 @@
 		  	USED ​​FORMULAS </button>
       <tr>
 			</div>
+
+			<!-- El presente bloque esta invisible, se pasara a visible 
+			una vez se toque el boton con la funcion mostrar -->
 			
 			<div id="formula" class="formula" style="width:100%; display:none">
 			<p class="subreporte-info justify" 
 						style="padding:1%; margin-top:-2px"> 
-			<a href="/formulas"> Formulas used in the graphs </a>
+			<!-- <a href="/formulas"> Formulas used in the graphs </a> -->
+			      Percentage Formula -->
+                <img id="auto" style="width: 380px; height:80px;" 
+                class="text-center" src="{{asset('img/porcentaje.png')}}">
+            <br> <br>
+					  Average Formula -->  
+                <img id="auto" style="width: 370px; height:80px;" 
+                class="text-center" src="{{asset('img/promedio.png')}}">	
 			</p>
 		  </div>
 
-			<script type="text/javascript">
-		    	
-		    	      function ocultar(){
-                	document.getElementById('intro').style.display = 'none';
-                	document.getElementById('abrir').style.display = 'block';
-                	document.getElementById('cerrar').style.display = 'none';
-                }
 
-                function mostrar(){
-                    document.getElementById('intro').style.display = 'block';
-                    document.getElementById('cerrar').style.display = 'block';
-                	document.getElementById('abrir').style.display = 'none';
-                }
-								function ocultar1(){
-                	document.getElementById('formula').style.display = 'none';
-                	document.getElementById('abrir1').style.display = 'block';
-                	document.getElementById('cerrar1').style.display = 'none';
-                }
+			<!-- Se referencia el codigo en javascript que controla 
+			la visibilidad e invisibilidad de los botones -->
+			<script src="{{ asset('js/botones-inicio.js') }}"></script>
 
-                function mostrar1(){
-                    document.getElementById('formula').style.display = 'block';
-                    document.getElementById('cerrar1').style.display = 'block';
-                	document.getElementById('abrir1').style.display = 'none';
-                }
-		    </script>
 		</div>
 	</div>
 </div>
